@@ -185,11 +185,7 @@ class ModelRepository implements ResolvesModels
      */
     protected static function shouldSkipClass(string $class): bool
     {
-        $skipTestClasses = config()->get('model-resolver.skip_tests')
-            && (str_ends_with($class, 'Test') || str_contains($class, '\\Tests\\'));
-
-        return $skipTestClasses
-            || str($class)->startsWith(config()->get('model-resolver.ignore'));
+        return str($class)->startsWith(config()->get('model-resolver.ignore'));
     }
 
     /**

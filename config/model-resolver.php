@@ -4,7 +4,6 @@ use Plank\LaravelModelResolver\Repository\ModelRepository;
 
 return [
     'repository' => ModelRepository::class,
-    'skip_tests' => false,
     'ignore' => [
         'DeepCopy\\',
         'Doctrine\\',
