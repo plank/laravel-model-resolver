@@ -4,7 +4,4 @@ namespace Plank\LaravelModelResolver\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ImplementsNone extends Model
-{
-
-}
+class ImplementsNone extends Model {}

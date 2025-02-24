@@ -35,7 +35,7 @@ class LaravelModelResolverServiceProvider extends PackageServiceProvider
         $this->app->scopedIf(ResolvesModels::class, function () {
             $repository = config('model-resolver.repository');
 
-            return new $repository();
+            return new $repository;
         });
     }
 }

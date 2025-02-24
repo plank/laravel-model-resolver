@@ -75,7 +75,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that implement the given interfaces
      *
-     * @param class-string $interface
+     * @param  class-string  $interface
      * @return Collection<class-string<Model>>
      */
     public function implements(string $interface): Collection
@@ -87,7 +87,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that implement all the given interfaces
      *
-     * @param array<class-string> $interfaces
+     * @param  array<class-string>  $interfaces
      * @return Collection<class-string<Model>>
      */
     public function implementsAll(array $interfaces): Collection
@@ -95,8 +95,8 @@ class ModelRepository implements ResolvesModels
         return (new Collection($this->map))
             ->filter(function (string $model) use ($interfaces) {
                 foreach ($interfaces as $interface) {
-                    if (!is_a($model, $interface, true)) {
-                        return false;         
+                    if (! is_a($model, $interface, true)) {
+                        return false;
                     }
                 }
 
@@ -107,7 +107,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that implement at least one of the given interfaces
      *
-     * @param array<class-string> $interfaces
+     * @param  array<class-string>  $interfaces
      * @return Collection<class-string<Model>>
      */
     public function implementsAny(array $interfaces): Collection
@@ -116,7 +116,7 @@ class ModelRepository implements ResolvesModels
             ->filter(function (string $model) use ($interfaces) {
                 foreach ($interfaces as $interface) {
                     if (is_a($model, $interface, true)) {
-                        return true;         
+                        return true;
                     }
                 }
 
@@ -127,7 +127,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that use the given trait
      *
-     * @param class-string $trait
+     * @param  class-string  $trait
      * @return Collection<class-string<Model>>
      */
     public function uses(string $trait): Collection
@@ -139,7 +139,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that use all the given traits
      *
-     * @param array<class-string> $traits
+     * @param  array<class-string>  $traits
      * @return Collection<class-string<Model>>
      */
     public function usesAll(array $traits): Collection
@@ -149,7 +149,7 @@ class ModelRepository implements ResolvesModels
                 $uses = class_uses_recursive($model);
 
                 foreach ($traits as $trait) {
-                    if (!in_array($trait, $uses)) {
+                    if (! in_array($trait, $uses)) {
                         return false;
                     }
                 }
@@ -161,7 +161,7 @@ class ModelRepository implements ResolvesModels
     /**
      * Get all Models that use at least one of the given traits
      *
-     * @param array<class-string> $traits
+     * @param  array<class-string>  $traits
      * @return Collection<class-string<Model>>
      */
     public function usesAny(array $traits): Collection

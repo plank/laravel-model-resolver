@@ -24,7 +24,7 @@ interface ResolvesModels
     /**
      * Get all Models that implement the given interfaces
      *
-     * @param class-string $interface
+     * @param  class-string  $interface
      * @return Collection<class-string<Model>>
      */
     public function implements(string $interface): Collection;
@@ -32,7 +32,7 @@ interface ResolvesModels
     /**
      * Get all Models that implement all the given interfaces
      *
-     * @param array<class-string> $interfaces
+     * @param  array<class-string>  $interfaces
      * @return Collection<class-string<Model>>
      */
     public function implementsAll(array $interfaces): Collection;
@@ -40,7 +40,7 @@ interface ResolvesModels
     /**
      * Get all Models that implement at least one of the given interfaces
      *
-     * @param array<class-string> $interfaces
+     * @param  array<class-string>  $interfaces
      * @return Collection<class-string<Model>>
      */
     public function implementsAny(array $interfaces): Collection;
@@ -48,7 +48,7 @@ interface ResolvesModels
     /**
      * Get all Models that use the given trait
      *
-     * @param class-string $trait
+     * @param  class-string  $trait
      * @return Collection<class-string<Model>>
      */
     public function uses(string $trait): Collection;
@@ -56,7 +56,7 @@ interface ResolvesModels
     /**
      * Get all Models that use all the given traits
      *
-     * @param array<class-string> $traits
+     * @param  array<class-string>  $traits
      * @return Collection<class-string<Model>>
      */
     public function usesAll(array $traits): Collection;
@@ -64,7 +64,7 @@ interface ResolvesModels
     /**
      * Get all Models that use at least one of the given traits
      *
-     * @param array<class-string> $traits
+     * @param  array<class-string>  $traits
      * @return Collection<class-string<Model>>
      */
     public function usesAny(array $traits): Collection;
