@@ -4,7 +4,6 @@ namespace Plank\LaravelModelResolver\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
 use Plank\LaravelModelResolver\Contracts\ResolvesModels;
 use Plank\LaravelModelResolver\Contracts\VersionKey;
 use Plank\LaravelModelResolver\Exceptions\ModelResolverException;
@@ -20,7 +19,7 @@ class ModelRepository implements ResolvesModels
 
     public function __construct()
     {
-        if (! File::exists($autoload = base_path('vendor/composer/autoload_classmap.php'))) {
+        if (! ($autoload = realpath('vendor/composer/autoload_classmap.php'))) {
             throw ModelResolverException::missingAutoloader();
         }
 
