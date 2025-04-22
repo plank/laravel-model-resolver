@@ -50,7 +50,7 @@ class ModelRepository implements ResolvesModels
                 // In many applications consuming applications will override vendor
                 // models in the App namespace, and we want to ensure the App's model
                 // is resolved for the table.
-                if ($mapped->has($table) && str($class)->startsWith('App\\')) {
+                if ($mapped->has($table) && ! str($class)->startsWith('App\\')) {
                     return $mapped;
                 }
 
