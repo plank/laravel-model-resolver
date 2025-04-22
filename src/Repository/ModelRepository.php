@@ -57,7 +57,7 @@ class ModelRepository implements ResolvesModels
                 $mapped->put($table, $class);
 
                 return $mapped;
-            }, new Collection())
+            }, new Collection)
             ->all();
 
         if (empty($this->map)) {
