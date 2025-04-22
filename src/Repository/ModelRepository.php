@@ -26,24 +26,38 @@ class ModelRepository implements ResolvesModels
         $this->map = Collection::make(require $autoload)
             ->keys()
             ->reject(fn (string $class) => static::shouldSkipClass($class))
-            ->mapWithKeys(function ($class) {
+            ->map(function ($class) {
                 try {
                     // First check if class exists without autoloading
                     if (! class_exists($class)) {
-                        return [$class => null];
+                        return null;
                     }
 
                     // Now check if it's a valid model
                     if (! static::isValidModel($class)) {
-                        return [$class => null];
+                        return null;
                     }
 
                     return static::getTableMapping($class);
                 } catch (Throwable) {
-                    return [$class => null];
+                    return null;
                 }
             })
             ->filter()
+            ->reduce(function (Collection $mapped, array $entry) {
+                [$table, $class] = $entry;
+
+                // In many applications consuming applications will override vendor
+                // models in the App namespace, and we want to ensure the App's model
+                // is resolved for the table.
+                if ($mapped->has($table) && str($class)->startsWith('App\\')) {
+                    return $mapped;
+                }
+
+                $mapped->put($table, $class);
+
+                return $mapped;
+            }, new Collection())
             ->all();
 
         if (empty($this->map)) {
@@ -217,14 +231,17 @@ class ModelRepository implements ResolvesModels
      * @param  class-string<VersionKey>  $keyClass
      * @return array<string, class-string|null>
      */
-    protected static function getTableMapping(string $class): array
+    protected static function getTableMapping(string $class): ?array
     {
         try {
             $model = new $class;
 
-            return [$model->getTable() => $class];
+            return [
+                $model->getTable(),
+                $class,
+            ];
         } catch (Throwable) {
-            return [$class => null];
+            return null;
         }
     }
 }
