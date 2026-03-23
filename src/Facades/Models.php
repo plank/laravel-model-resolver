@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 use Plank\LaravelModelResolver\Contracts\ResolvesModels;
+use Plank\LaravelModelResolver\Repository\ModelRepository;
 
 /**
- * @see \Plank\LaravelModelResolver\Repository\ModelRepository
+ * @see ModelRepository
  *
  * @method static Collection<class-string<Model>> all()
  * @method static class-string<Model>|null fromTable(string $table):

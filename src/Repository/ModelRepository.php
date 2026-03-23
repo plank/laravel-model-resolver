@@ -3,8 +3,10 @@
 namespace Plank\LaravelModelResolver\Repository;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Orchestra\Testbench\TestCase;
 use Plank\LaravelModelResolver\Contracts\ResolvesModels;
 use Plank\LaravelModelResolver\Contracts\VersionKey;
 use Plank\LaravelModelResolver\Exceptions\ModelResolverException;
@@ -252,7 +254,7 @@ class ModelRepository implements ResolvesModels
     protected function getAutoloadPath(): ?string
     {
         // Check if we are running in an Orchestra Testbench environment
-        if (class_exists(\Orchestra\Testbench\TestCase::class) && app() instanceof \Illuminate\Foundation\Application && app()->bound('env') && app('env') === 'testing') {
+        if (class_exists(TestCase::class) && app() instanceof Application && app()->bound('env') && app('env') === 'testing') {
             return realpath('vendor/composer/autoload_classmap.php');
         }
 
