@@ -4,6 +4,7 @@ namespace Plank\LaravelModelResolver\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Plank\LaravelModelResolver\Contracts\ResolvesModels;
 use Plank\LaravelModelResolver\Contracts\VersionKey;
 use Plank\LaravelModelResolver\Exceptions\ModelResolverException;
@@ -19,7 +20,7 @@ class ModelRepository implements ResolvesModels
 
     public function __construct()
     {
-        if (! ($autoload = realpath('vendor/composer/autoload_classmap.php'))) {
+        if (! ($autoload = $this->getAutoloadPath())) {
             throw ModelResolverException::missingAutoloader();
         }
 
@@ -243,5 +244,23 @@ class ModelRepository implements ResolvesModels
         } catch (Throwable) {
             return null;
         }
+    }
+
+    /**
+     * Determine the correct path to the Composer autoload_classmap.php file.
+     */
+    protected function getAutoloadPath(): ?string
+    {
+        // Check if we are running in an Orchestra Testbench environment
+        if (class_exists(\Orchestra\Testbench\TestCase::class) && app() instanceof \Illuminate\Foundation\Application && app()->bound('env') && app('env') === 'testing') {
+            return realpath('vendor/composer/autoload_classmap.php');
+        }
+
+        // For consuming applications, use base_path
+        $appPath = base_path('vendor/composer/autoload_classmap.php');
+
+        return File::exists($appPath)
+            ? $appPath
+            : null;
     }
 }
