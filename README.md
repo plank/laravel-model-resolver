@@ -4,8 +4,6 @@
 <a href="https://packagist.org/packages/plank/laravel-model-resolver"><img src="https://img.shields.io/packagist/php-v/plank/laravel-model-resolver?color=%23fae370&label=php&logo=php&logoColor=%23fff" alt="PHP Version Support"></a>
 <a href="https://laravel.com/docs/11.x/releases#support-policy"><img src="https://img.shields.io/badge/laravel-10.x,%2011.x-%2343d399?color=%23f1ede9&logo=laravel&logoColor=%23ffffff" alt="PHP Version Support"></a>
 <a href="https://github.com/plank/laravel-model-resolver/actions?query=workflow%3Arun-tests"><img src="https://img.shields.io/github/actions/workflow/status/plank/laravel-model-resolver/run-tests.yml?branch=main&&color=%23bfc9bd&label=run-tests&logo=github&logoColor=%23fff" alt="GitHub Workflow Status"></a>
-<a href="https://codeclimate.com/github/plank/laravel-model-resolver/test_coverage"><img src="https://img.shields.io/codeclimate/coverage/plank/laravel-model-resolver?color=%23ff9376&label=test%20coverage&logo=code-climate&logoColor=%23fff" /></a>
-<a href="https://codeclimate.com/github/plank/laravel-model-resolver/maintainability"><img src="https://img.shields.io/codeclimate/maintainability/plank/laravel-model-resolver?color=%23528cff&label=maintainablility&logo=code-climate&logoColor=%23fff" /></a>
 </p>
 
 # Laravel Model Resolver
@@ -18,14 +16,14 @@ Resolve all defined Models from the application or dependencies.
 - [Quick Start](#quick-start)
 - [Configuration](#configuration)
 - [Usage](#usage)
-  - [all](#all)
-  - [fromTable](#fromtable)
-  - [implements](#implements)
-  - [implementsAll](#implementsall)
-  - [implementsAny](#implementsany)
-  - [uses](#uses)
-  - [usesAll](#usesall)
-  - [usesAny](#usesany)
+    - [all](#all)
+    - [fromTable](#fromtable)
+    - [implements](#implements)
+    - [implementsAll](#implementsall)
+    - [implementsAny](#implementsany)
+    - [uses](#uses)
+    - [usesAll](#usesall)
+    - [usesAny](#usesany)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
